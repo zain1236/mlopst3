@@ -1,16 +1,9 @@
-from sklearn.datasets import make_regression
-import pandas as pd
 import os
-import numpy as np
+import wget
 
-# If there's no dataset in the project directory, create a reasonably large one.
-# If it exists, append some new observations.
-if os.path.isfile("data.csv"):
-    n = 1
-else:
-    n = 50
+# data from https://www.sciencedirect.com/science/article/pii/S2352340920303048
 
-for i in range(0,n):
-    X, y = make_regression(10000,n_features = 10)
-    df = pd.DataFrame(X)
-    df.to_csv("data.csv",mode='a')
+# Download the zipped dataset
+url = 'https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/383116/rawdata_new.csv?sequence=1&isAllowed=y'
+file_name = "data_raw.csv"
+wget.download(url, file_name)
